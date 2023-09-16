@@ -1,4 +1,4 @@
-package com.fabrick.testfabrick.dto;
+package com.fabrick.testfabrick.dto.getAccountBalance;
 
 import lombok.Data;
 

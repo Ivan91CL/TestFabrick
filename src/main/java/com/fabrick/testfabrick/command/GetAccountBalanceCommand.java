@@ -1,6 +1,6 @@
 package com.fabrick.testfabrick.command;
 
-import com.fabrick.testfabrick.model.FabrickResponseGetAccountBalance;
+import com.fabrick.testfabrick.model.getAccountBalance.FabrickResponseGetAccountBalance;
 import com.fabrick.testfabrick.service.AccountService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;

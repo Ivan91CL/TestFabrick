@@ -2,6 +2,9 @@ package com.fabrick.testfabrick.exception;
 
 import lombok.Data;
 import org.springframework.web.client.HttpClientErrorException;
+import org.json.JSONObject;
+import org.json.JSONArray;
+import org.apache.commons.lang3.StringUtils;
 
 @Data
 public class CustomException extends RuntimeException {
@@ -11,18 +14,23 @@ public class CustomException extends RuntimeException {
 
     public CustomException(HttpClientErrorException e) {
         super();
-        if (e.getMessage().contains("REQ")) {
-            this.errorCode = ERROR.REQ_ERR.getCode();
-            this.message = ERROR.REQ_ERR.getMessage();
-        } else if (e.getMessage().contains("CUS")) {
-            this.errorCode = ERROR.REQ_ERR.getCode();
-            this.message = ERROR.REQ_ERR.getMessage();
-        } else if (e.getMessage().contains("BKN")) {
-            this.errorCode = ERROR.REQ_ERR.getCode();
-            this.message = ERROR.REQ_ERR.getMessage();
-        } else if (e.getMessage().contains("PYM")) {
-            this.errorCode = ERROR.REQ_ERR.getCode();
-            this.message = ERROR.REQ_ERR.getMessage();
+        setParams(e);
+    }
+
+    private void setParams(HttpClientErrorException e) {
+        String msg = e.getMessage();
+        msg = msg.replace("<EOL>", "");
+        msg = msg.substring(msg.indexOf("{"), msg.length() - 1);
+
+        JSONObject obj = new JSONObject(msg);
+        JSONArray errors = obj.getJSONArray("errors");
+
+        JSONObject error = errors.getJSONObject(0);
+        String code = error.getString("code");
+
+        if (StringUtils.isNotBlank(code)) {
+            this.errorCode = code;
+            this.message = error.getString("description");
         } else {
             this.errorCode = ERROR.GEN_ERR.getCode();
             this.message = ERROR.GEN_ERR.getMessage();

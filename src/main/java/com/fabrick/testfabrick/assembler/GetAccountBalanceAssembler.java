@@ -1,16 +1,16 @@
 package com.fabrick.testfabrick.assembler;
 
-import com.fabrick.testfabrick.dto.GetAccountBalanceResponseDto;
-import com.fabrick.testfabrick.dto.GetAccountBalanceResponsePayload;
-import com.fabrick.testfabrick.model.FabrickResponseGetAccountBalance;
+import com.fabrick.testfabrick.dto.getAccountBalance.GetAccountBalanceResponseDto;
+import com.fabrick.testfabrick.dto.getAccountBalance.GetAccountBalanceResponsePayload;
+import com.fabrick.testfabrick.model.getAccountBalance.FabrickResponseGetAccountBalance;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 
 @Component
-public class GetAccountBalanceResponseAssembler {
+public class GetAccountBalanceAssembler {
 
-    public GetAccountBalanceResponseDto convertToDto(FabrickResponseGetAccountBalance fabrickResponse){
+    public GetAccountBalanceResponseDto convertResponseToDto(FabrickResponseGetAccountBalance fabrickResponse){
         GetAccountBalanceResponseDto responseDto = new GetAccountBalanceResponseDto();
         GetAccountBalanceResponsePayload payload = new GetAccountBalanceResponsePayload();
 

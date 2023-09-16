@@ -1,4 +1,4 @@
-package com.fabrick.testfabrick.model;
+package com.fabrick.testfabrick.model.getAccountBalance;
 
 import lombok.Data;
 
