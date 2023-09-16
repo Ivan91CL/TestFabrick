@@ -4,6 +4,9 @@ package com.fabrick.testfabrick.controller;
 import com.fabrick.testfabrick.assembler.GetAccountBalanceResponseAssembler;
 import com.fabrick.testfabrick.command.GetAccountBalanceCommand;
 import com.fabrick.testfabrick.dto.GetAccountBalanceResponseDto;
+import com.fabrick.testfabrick.dto.ResponseDto;
+import com.fabrick.testfabrick.exception.CustomException;
+import com.fabrick.testfabrick.exception.ErrorManager;
 import com.fabrick.testfabrick.model.FabrickResponseGetAccountBalance;
 import lombok.Data;
 import org.slf4j.Logger;
@@ -32,13 +35,17 @@ public class FabrickController {
 
 
     @GetMapping("/getAccountBalance")
-    public ResponseEntity<GetAccountBalanceResponseDto> getAccountBalance(@RequestParam(value = "accountId") Long accountId) {
+    public ResponseEntity<ResponseDto> getAccountBalance(@RequestParam(value = "accountId") Long accountId) {
 
-        GetAccountBalanceCommand command = applicationContext.getBean(GetAccountBalanceCommand.class, accountId);
-        FabrickResponseGetAccountBalance fabrickResponse = command.execute();
-        ((ConfigurableApplicationContext) applicationContext).getBeanFactory().destroyBean(command);
-        GetAccountBalanceResponseDto response = getAccountBalanceResponseAssembler.convertToDto(fabrickResponse);
-        return ResponseEntity.ok(response);
+        try {
+            GetAccountBalanceCommand command = applicationContext.getBean(GetAccountBalanceCommand.class, accountId);
+            FabrickResponseGetAccountBalance fabrickResponse = command.execute();
+            ((ConfigurableApplicationContext) applicationContext).getBeanFactory().destroyBean(command);
+            GetAccountBalanceResponseDto response = getAccountBalanceResponseAssembler.convertToDto(fabrickResponse);
+            return ResponseEntity.ok(response);
+        }catch (CustomException e){
+            return ErrorManager.generateErrorMessage(e);
+        }
     }
 
 }

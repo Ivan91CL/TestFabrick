@@ -5,9 +5,7 @@ import com.fabrick.testfabrick.dto.GetAccountBalanceResponsePayload;
 import com.fabrick.testfabrick.model.FabrickResponseGetAccountBalance;
 import org.springframework.stereotype.Component;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Component
 public class GetAccountBalanceResponseAssembler {
@@ -22,7 +20,6 @@ public class GetAccountBalanceResponseAssembler {
         payload.setCurrency(fabrickResponse.getPayload().getCurrency());
 
         responseDto.setPayload(payload);
-        responseDto.setStatus("OK");
 
         return responseDto;
     }
