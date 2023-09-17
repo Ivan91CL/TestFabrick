@@ -20,15 +20,16 @@ public class AccountService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public FabrickResponseGetAccountBalance getAccountBalance(Long accountId){
+    public FabrickResponseGetAccountBalance getAccountBalance(Number accountId){
 
         try {
             return restTemplate.exchange(getAccountBalanceUrl, HttpMethod.GET, null, FabrickResponseGetAccountBalance.class, accountId).getBody();
         }catch (Exception e){
             if(e instanceof HttpClientErrorException) {
                 throw new CustomException((HttpClientErrorException) e);
+            }else {
+                throw new CustomException();
             }
         }
-        return null;
     }
 }

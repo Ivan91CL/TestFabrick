@@ -1,26 +1,32 @@
 package com.fabrick.testfabrick.utils;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
+@Data
 public class CustomClientHttpRequestInterceptor implements ClientHttpRequestInterceptor {
 
-    @Value("${api.key}")
     private String apiKey;
-    @Value("${header.contentType}")
     private String contentType;
-    @Value("${header.authSchema}")
     private String authSchema;
-    @Value("${header.XTimeZone}")
-    private String XTimeZone;
+    private String xTimeZone;
 
-    public CustomClientHttpRequestInterceptor() {
+    public CustomClientHttpRequestInterceptor(String apiKey, String contentType, String authSchema, String xTimeZone) {
+        super();
+        this.apiKey = apiKey;
+        this.contentType = contentType;
+        this.authSchema = authSchema;
+        this.xTimeZone = xTimeZone;
     }
 
     @Override
@@ -30,7 +36,7 @@ public class CustomClientHttpRequestInterceptor implements ClientHttpRequestInte
         headers.set("Content-Type", contentType);
         headers.set("Auth-Schema", authSchema);
         headers.set("Api-Key", apiKey);
-        headers.set("X-Time-Zone", XTimeZone);
+        headers.set("X-Time-Zone", xTimeZone);
 
         return execution.execute(request, body);
     }

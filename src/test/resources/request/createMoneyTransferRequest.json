@@ -1,0 +1,13 @@
+{
+  "accountId": 14537780,
+  "creditor": {
+    "name": "John Doe",
+    "account": {
+      "accountCode": "IT23A0336844430152923804660"
+    }
+  },
+  "executionDate": "2023-12-25",
+  "description": "Regalo di Natale",
+  "amount": 800,
+  "currency": "EUR"
+}

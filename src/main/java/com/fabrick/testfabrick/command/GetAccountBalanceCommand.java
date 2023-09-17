@@ -12,14 +12,14 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class GetAccountBalanceCommand {
 
-    private Long accountId;
+    private Number accountId;
 
     @Autowired
     private AccountService accountService;
 
     public GetAccountBalanceCommand(){}
 
-    public GetAccountBalanceCommand(Long accountId){
+    public GetAccountBalanceCommand(Number accountId){
         super();
         this.accountId = accountId;
     }

@@ -65,4 +65,17 @@ public class FabrickController {
         }
     }
 
+    @GetMapping("/getAccountTransactions")
+    public ResponseEntity<ResponseDto> getAccountTransactions(@RequestParam(value = "accountId") Long accountId,
+                                                              @RequestParam(value = "fromAccountingDate") String fromAccountingDate,
+                                                              @RequestParam(value = "toAccountingDate") String toAccountingDate) {
+
+        try {
+
+            return null;//ResponseEntity.ok(response);
+        }catch (CustomException e){
+            return ErrorManager.generateErrorMessage(e);
+        }
+    }
+
 }

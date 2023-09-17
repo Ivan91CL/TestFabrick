@@ -30,13 +30,13 @@ public class MoneyTransferService {
 
         try {
             //N.B. la classe di response non è stata implementata in quanto di grande dimensioni e non utilizzata
-            ResponseEntity res = restTemplate.exchange(uri, HttpMethod.POST, new HttpEntity<>(request, null), ResponseEntity.class).getBody();
-            return res;
+            return restTemplate.exchange(uri, HttpMethod.POST, new HttpEntity<>(request, null), ResponseEntity.class).getBody();
         } catch (Exception e) {
             if (e instanceof HttpClientErrorException) {
                 throw new CustomException((HttpClientErrorException) e);
+            } else {
+                throw new CustomException();
             }
         }
-        return null;
     }
 }
