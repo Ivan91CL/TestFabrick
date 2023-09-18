@@ -10,7 +10,7 @@ public class ERRORTest {
 
     @Test
     public void test(){
-        assertEquals(1, ERROR.values().length);
+        assertEquals(2, ERROR.values().length);
 
         assertEquals(ERROR.GEN_ERR.getCode(), ERROR.valueOf("GEN_ERR").getCode());
         assertEquals(ERROR.GEN_ERR.getMessage(), ERROR.valueOf("GEN_ERR").getMessage());

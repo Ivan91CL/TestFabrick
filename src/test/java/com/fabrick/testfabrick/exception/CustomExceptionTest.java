@@ -18,6 +18,7 @@ public class CustomExceptionTest {
     @Test
     public void test() throws IOException {
         CustomException customException = new CustomException();
+        customException = new CustomException(ERROR.GEN_ERR);
 
         HttpClientErrorException ex = new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR);
         customException = new CustomException(ex);

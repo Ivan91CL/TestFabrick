@@ -18,6 +18,12 @@ public class CustomException extends RuntimeException {
         this.message = ERROR.GEN_ERR.getMessage();
     }
 
+    public CustomException(ERROR error) {
+        super();
+        this.errorCode = error.getCode();
+        this.message = error.getMessage();
+    }
+
     public CustomException(HttpClientErrorException e) {
         super();
         setParams(e);

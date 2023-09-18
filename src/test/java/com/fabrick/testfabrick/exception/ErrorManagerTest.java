@@ -14,6 +14,7 @@ public class ErrorManagerTest {
     @Test
     public void generateErrorMessage() {
         ResponseEntity<ResponseDto> response = ErrorManager.generateErrorMessage(new CustomException());
+        response = ErrorManager.generateErrorMessage(new CustomException(ERROR.DATE_ERR));
 
         assertNotNull(response);
     }

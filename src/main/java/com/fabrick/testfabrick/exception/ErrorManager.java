@@ -11,6 +11,9 @@ public class ErrorManager {
         dto.setStatus("KO");
         dto.setError(new ErrorDto(e.getErrorCode(), e.getMessage()));
 
-        return ResponseEntity.ok(dto);
+        if(dto.getError().getErrorCode().equals("GEN_ERR")){
+            return ResponseEntity.internalServerError().body(dto);
+        }
+        return ResponseEntity.badRequest().body(dto);
     }
 }
