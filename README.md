@@ -8,7 +8,7 @@ La versione di Java supportata è la 17
 
 ## INFO PROGETTO
 
-Il progetto contiene un Controller Rest che esponse tre API:
+Il progetto contiene un Controller Rest che espone tre API:
     
     * /fabrick/getAccountBalance
     * /fabrick/createMoneyTransfer
