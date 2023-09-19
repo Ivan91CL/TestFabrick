@@ -4,7 +4,7 @@
 
 Il progetto è stato sviluppato utilizzando la versione 3.1.3 di Spring Boot
 
-La versione di Java necessaria è la 17
+La versione di Java supportata è la 17
 
 ## INFO PROGETTO
 
